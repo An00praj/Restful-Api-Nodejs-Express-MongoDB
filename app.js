@@ -12,6 +12,11 @@ con.on('open', () => {
     console.log('connected...');
 });
 
+app.use(express.json())
+
+const movieRouter = require('./routes/movies');
+app.use('/movies', movieRouter);
+
 app.listen(3000, () => {
     console.log('Server started');
 });
