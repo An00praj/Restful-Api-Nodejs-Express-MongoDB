@@ -1,15 +1,17 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const url = 'mongodb://localhost/MovieDBex';
 
 const app = express();
 
-//ROUTES
-app.get('/', (req, res) => {
-    res.send('We are on home');
+mongoose.connect(url, {useNewUrlParser:true});
+
+const con = mongoose.connection;
+
+con.on('open', () => {
+    console.log('connected...');
 });
 
-app.get('/posts', (req, res) => {
-    res.send('We are on post');
+app.listen(3000, () => {
+    console.log('Server started');
 });
-
-//How do we start listening to the server
-app.listen(3000);
