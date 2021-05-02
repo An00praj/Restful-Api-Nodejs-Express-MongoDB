@@ -11,6 +11,15 @@ router.get('/', async(req,res) => {
   }
 })
 
+router.get('/:id', async(req,res) => {
+  try {
+    const movies = await Movie.findById(req.params.id)
+    res.json(movies)
+  } catch (err) {
+    res.send('Error' + err)
+  }
+})
+
 router.post('/', async(req,res) => {
   const movie = new Movie({
     title: req.body.title,
